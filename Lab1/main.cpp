@@ -6,6 +6,6 @@ using namespace lab1;
 
 int main()
 {
-	int a = Add(1, 3)
+	int a = Add(1, 3);
 	cout << a << endl;
 }
