@@ -9,8 +9,8 @@ namespace lab2
 {
 	void PrintIntegers(std::istream& in, std::ostream& out)
 	{
-		int num; 
-		string trash; 
+		int num;
+		string trash;
 
 		out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl;
 		out << "------------ ---------- --------" << endl;
@@ -35,13 +35,13 @@ namespace lab2
 	{
 		float num;
 		float max = -std::numeric_limits<float>::max();
-		string trash; 
+		string trash;
 
 
 
 		while (!in.eof()) {
 			in >> num;
-			
+
 			if (in.fail()) {
 				in.clear();
 				in >> trash;
@@ -55,6 +55,6 @@ namespace lab2
 			out << "     " << setw(15) << showpos << internal << showpoint << setprecision(3) << fixed << num << endl;
 		}
 
-		out << "max: " << setw(15) << showpos << internal << showpoint << setprecision(3) << fixed << max  << endl;
+		out << "max: " << setw(15) << showpos << internal << showpoint << setprecision(3) << fixed << max << endl;
 	}
 }
