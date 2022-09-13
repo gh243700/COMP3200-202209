@@ -15,10 +15,12 @@ namespace lab2
 		out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl;
 		out << "------------ ---------- --------" << endl;
 
-		while (!in.eof()) {
+		while (!in.eof()) 
+		{
 			in >> num;
 
-			if (in.fail()) {
+			if (in.fail()) 
+			{
 				in.clear();
 				in >> trash;
 				continue;
@@ -37,18 +39,19 @@ namespace lab2
 		float max = -std::numeric_limits<float>::max();
 		string trash;
 
-
-
-		while (!in.eof()) {
+		while (!in.eof()) 
+		{
 			in >> num;
 
-			if (in.fail()) {
+			if (in.fail()) 
+			{
 				in.clear();
 				in >> trash;
 				continue;
 			}
 
-			if (max < num) {
+			if (max < num) 
+			{
 				max = num;
 			}
 
