@@ -12,7 +12,7 @@ namespace lab2
 		int num; 
 		string trash; 
 
-		out << setw(12) << "oct" << setw(12) << "dec" << setw(12) << "hex" << endl;
+		out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl;
 		out << "------------ ---------- --------" << endl;
 
 		while (!in.eof()) {
@@ -25,8 +25,8 @@ namespace lab2
 			}
 
 			out << setw(12) << right << oct << uppercase << num;
-			out << setw(12) << right << dec << uppercase << num;
-			out << setw(12) << right << hex << uppercase << num;
+			out << setw(11) << right << dec << uppercase << num;
+			out << setw(9) << right << hex << uppercase << num;
 			out << endl;
 		}
 	}
@@ -34,8 +34,9 @@ namespace lab2
 	void PrintMaxFloat(std::istream& in, std::ostream& out)
 	{
 		float num;
+		float max = -std::numeric_limits<float>::max();
 		string trash; 
-		float max = std::numeric_limits<float>::min();
+
 
 
 		while (!in.eof()) {
