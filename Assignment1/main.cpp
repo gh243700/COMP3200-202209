@@ -106,12 +106,18 @@ void test_LastIndexOf() {
 
 
 void test_Interleave() {
-	assignment1::MyString s1 = "13579";
-	assignment1::MyString s2 = "123456789";
-
+	assignment1::MyString s1 = "1357";
+	
 	s1.Interleave("2468");
+	assert(s1 == "12345678");
 
-	assert(s1 == s2);
+	s1 = "13";
+	s1.Interleave("2456789");
+	assert(s1 == "123456789");
+
+	s1 = "1356789";
+	s1.Interleave("24");
+	assert(s1 == "123456789");
 }
 
 void test_RemoveAt() {

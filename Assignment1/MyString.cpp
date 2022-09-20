@@ -169,34 +169,33 @@ namespace assignment1
 		const char* s_ptr = s;
 		char* pa_result;
 		char* pa_result_ptr;
-		int s_length = 0;
+		unsigned int s_length = 0;
 
 		while (*s_ptr++ != '\0') {
-			length++;
 			s_length++;
 		}
 		s_ptr = s;
 
-		pa_result = new char[length + 1];
+		pa_result = new char[length + s_length + 1];
 		pa_result_ptr = pa_result;
 
-		const char* ptr = str_ptr;
-		for (int i = 0; i < ((length > s_length) ? s_length : length) * 2 + 1; i++) {
+		
+		for (unsigned int i = 0; i < ((length > s_length) ? s_length : length) * 2; i++) {
 			if (i % 2 == 0) {
 				*pa_result_ptr++ = *str_ptr++;
-				ptr = str_ptr;
 			}
 			else {
 				*pa_result_ptr++ = *s_ptr++;
-				ptr = s_ptr;
 			}
 		}
+		const char* ptr = (length > s_length) ? str_ptr : s_ptr;
 
 		while (*ptr != '\0') {
 			*pa_result_ptr++ = *ptr++;
 		}
 
 		*pa_result_ptr = '\0';
+		length += s_length;
 
 		delete[] str;
 		str = pa_result;
