@@ -298,6 +298,8 @@ namespace assignment1
 		delete str;
 
 		str = new char[rhs.length + 1];
+		this->length = rhs.length;
+
 		char* str_ptr = str;
 		char* rhs_ptr = rhs.str;
 		while (*rhs_ptr != '\0') {
