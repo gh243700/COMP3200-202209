@@ -26,6 +26,10 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& oth)
 	{
+		if (this == &oth) {
+			return *this;
+		}
+
 		mName = oth.mName;
 		mMaxEntries = oth.mMaxEntries;
 
