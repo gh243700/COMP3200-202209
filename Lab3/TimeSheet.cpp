@@ -33,10 +33,11 @@ namespace lab3
 		mName = oth.mName;
 		mMaxEntries = oth.mMaxEntries;
 
-		delete mEntries;
+		int* temp = new int[mMaxEntries + 1];
+		memcpy(temp, oth.mEntries, sizeof(int) * (mMaxEntries + 1));
 
-		mEntries = new int[mMaxEntries + 1];
-		memcpy(mEntries, oth.mEntries, sizeof(int) * (mMaxEntries + 1));
+		delete[] mEntries;
+		mEntries = temp;
 
 		mIndex = oth.mIndex;
 
