@@ -29,7 +29,7 @@ namespace assignment1
 		void ToUpper();
 
 	private:
-		char* str;
+		char* mStr;
 		unsigned int length;
 
 		bool isEmptyString(const char* const str) const;

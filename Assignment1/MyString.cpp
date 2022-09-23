@@ -4,11 +4,11 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
-		:length(0)
+		: length(0)
 	{
 		if (s == NULL || *s == '\0') {
-			str = new char[length + 1];
-			*str = '\0';
+			mStr = new char[length + 1];
+			*mStr = '\0';
 			return;
 		}
 		const char* s_ptr = s;
@@ -18,9 +18,9 @@ namespace assignment1
 			s_ptr++;
 		}
 
-		str = new char[length + 1];
+		mStr = new char[length + 1];
 
-		str_ptr = str;
+		str_ptr = mStr;
 		s_ptr = s;
 		while (*s_ptr != '\0') {
 			*str_ptr++ = *s_ptr++;
@@ -29,13 +29,13 @@ namespace assignment1
 	}
 
 	MyString::MyString(const MyString& other)
-		:MyString(other.str)
+		: MyString(other.mStr)
 	{
 	}
 
 	MyString::~MyString()
 	{
-		delete[] str;
+		delete[] mStr;
 	}
 
 	unsigned int MyString::GetLength() const
@@ -45,7 +45,7 @@ namespace assignment1
 
 	const char* MyString::GetCString() const
 	{
-		return str;
+		return mStr;
 	}
 
 	void MyString::Append(const char* s)
@@ -63,7 +63,7 @@ namespace assignment1
 		char* str_temp = new char[length + 1];
 
 		char* temp_ptr = str_temp;
-		s_ptr = str;
+		s_ptr = mStr;
 		while (*s_ptr != '\0') {
 			*temp_ptr++ = *s_ptr++;
 		}
@@ -73,10 +73,10 @@ namespace assignment1
 		}
 		*temp_ptr = '\0';
 
-		delete[] str;
-		str = NULL;
+		delete[] mStr;
+		mStr = NULL;
 
-		str = str_temp;
+		mStr = str_temp;
 	}
 
 	MyString MyString::operator+(const MyString& other) const
@@ -85,13 +85,13 @@ namespace assignment1
 
 		char* temp_ptr = temp;
 
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 
 		while (*str_ptr != '\0') {
 			*temp_ptr++ = *str_ptr++;
 		}
 
-		str_ptr = other.str;
+		str_ptr = other.mStr;
 
 		while (*str_ptr != '\0') {
 			*temp_ptr++ = *str_ptr++;
@@ -115,14 +115,14 @@ namespace assignment1
 		if (isEmptyString(s)) {
 			return 0;
 		}
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 		while (*str_ptr != '\0') {
 			const char* s_ptr = s;
 			int i = 0;
 			while (*(str_ptr + i) == *(s_ptr + i)) {
 				i++;
 				if (*(s_ptr + i) == '\0') {
-					return str_ptr - str;
+					return str_ptr - mStr;
 				}
 			}
 
@@ -141,7 +141,7 @@ namespace assignment1
 		if (isEmptyString(s)) {
 			return length;
 		}
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 		int index = -1;
 		while (*str_ptr != '\0') {
 			const char* s_ptr = s;
@@ -149,7 +149,7 @@ namespace assignment1
 			while (*(str_ptr + i) == *s_ptr) {
 				s_ptr++;
 				if (*s_ptr == '\0') {
-					index = str_ptr - str;
+					index = str_ptr - mStr;
 				}
 				i++;
 			}
@@ -165,7 +165,7 @@ namespace assignment1
 			return;
 		}
 
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 		const char* s_ptr = s;
 		char* pa_result;
 		char* pa_result_ptr;
@@ -179,7 +179,7 @@ namespace assignment1
 		pa_result = new char[length + s_length + 1];
 		pa_result_ptr = pa_result;
 
-		
+
 		for (unsigned int i = 0; i < ((length > s_length) ? s_length : length) * 2; i++) {
 			if (i % 2 == 0) {
 				*pa_result_ptr++ = *str_ptr++;
@@ -197,13 +197,13 @@ namespace assignment1
 		*pa_result_ptr = '\0';
 		length += s_length;
 
-		delete[] str;
-		str = pa_result;
+		delete[] mStr;
+		mStr = pa_result;
 	}
 
 	bool MyString::RemoveAt(unsigned int i)
 	{
-		char* str_ptr = str;
+		char* str_ptr = mStr;
 
 		if (i >= length) {
 			return false;
@@ -229,7 +229,7 @@ namespace assignment1
 
 		char* result = new char[totalLength + 1];
 		char* result_ptr = result;
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 
 		for (unsigned int i = 0; i < totalLength; i++) {
 			if (i < totalLength - this->length) {
@@ -242,8 +242,8 @@ namespace assignment1
 		*result_ptr = '\0';
 
 		this->length = totalLength;
-		delete[] this->str;
-		this->str = result;
+		delete[] this->mStr;
+		this->mStr = result;
 	}
 
 	void MyString::PadRight(unsigned int totalLength)
@@ -259,7 +259,7 @@ namespace assignment1
 
 		char* result = new char[totalLength + 1];
 		char* result_ptr = result;
-		const char* str_ptr = str;
+		const char* str_ptr = mStr;
 
 		for (unsigned int i = 0; i < totalLength; i++) {
 			if (i < this->length) {
@@ -271,15 +271,15 @@ namespace assignment1
 		}
 		*result_ptr = '\0';
 
-		delete[] str;
-		str = result;
+		delete[] mStr;
+		mStr = result;
 		this->length = totalLength;
 	}
 
 	void MyString::Reverse()
 	{
-		char* back_ptr = str + this->length;
-		char* front_ptr = str;
+		char* back_ptr = mStr + this->length;
+		char* front_ptr = mStr;
 
 		while (front_ptr < back_ptr) {
 			char temp = *front_ptr;
@@ -293,8 +293,8 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
-		const char* s1_ptr = str;
-		const char* s2_ptr = rhs.str;
+		const char* s1_ptr = mStr;
+		const char* s2_ptr = rhs.mStr;
 
 		while (*s1_ptr == *s2_ptr && *s1_ptr != '\0') {
 			s1_ptr++;
@@ -314,13 +314,13 @@ namespace assignment1
 		if (*this == rhs) {
 			return *this;
 		}
-		delete[] str;
+		delete[] mStr;
 
-		str = new char[rhs.length + 1];
+		mStr = new char[rhs.length + 1];
 		this->length = rhs.length;
 
-		char* str_ptr = str;
-		char* rhs_ptr = rhs.str;
+		char* str_ptr = mStr;
+		char* rhs_ptr = rhs.mStr;
 		while (*rhs_ptr != '\0') {
 			*str_ptr++ = *rhs_ptr++;
 		}
@@ -331,7 +331,7 @@ namespace assignment1
 
 	void MyString::ToLower()
 	{
-		char* str_ptr = str;
+		char* str_ptr = mStr;
 
 		while (*str_ptr != '\0') {
 			if (*str_ptr >= 'A' && *str_ptr <= 'Z' || *str_ptr >= 'a' && *str_ptr <= 'z') {
@@ -343,7 +343,7 @@ namespace assignment1
 
 	void MyString::ToUpper()
 	{
-		char* str_ptr = str;
+		char* str_ptr = mStr;
 
 		while (*str_ptr != '\0') {
 			if (*str_ptr >= 'A' && *str_ptr <= 'Z' || *str_ptr >= 'a' && *str_ptr <= 'z') {
