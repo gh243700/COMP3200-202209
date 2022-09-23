@@ -1,11 +1,11 @@
-#include "TimeSheet.h";
+#include "TimeSheet.h"
 
 namespace lab3
 {
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
 		:mName(name)
-		,mMaxEntries(maxEntries)
-		,mIndex(0)
+		, mMaxEntries(maxEntries)
+		, mIndex(0)
 	{
 		mEntries = new int[mMaxEntries + 1];
 		memset(mEntries, -1, sizeof(int) * (mMaxEntries + 1));
@@ -13,8 +13,8 @@ namespace lab3
 
 	TimeSheet::TimeSheet(const TimeSheet& oth)
 		:mName(oth.mName)
-		,mMaxEntries(oth.mMaxEntries)
-		,mIndex(oth.mIndex)
+		, mMaxEntries(oth.mMaxEntries)
+		, mIndex(oth.mIndex)
 	{
 		mEntries = new int[mMaxEntries + 1];
 		memcpy(mEntries, oth.mEntries, sizeof(int) * (mMaxEntries + 1));
@@ -66,7 +66,8 @@ namespace lab3
 
 	float TimeSheet::GetAverageTime() const
 	{
-		return GetTotalTime() / (float)mIndex;
+		int totalTime = GetTotalTime();
+		return (totalTime == 0) ? 0 : totalTime / (float)mIndex;
 	}
 
 	float TimeSheet::GetStandardDeviation() const
@@ -77,7 +78,7 @@ namespace lab3
 			val += (float)std::pow(*mEntries_ptr - GetAverageTime(), 2);
 			mEntries_ptr++;
 		}
-		return std::sqrt(val / mIndex);
+		return (val == 0.0f) ? 0.0f : std::sqrt(val / mIndex);
 	}
 
 	const std::string& TimeSheet::GetName() const

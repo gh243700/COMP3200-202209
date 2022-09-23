@@ -1,7 +1,7 @@
 #pragma once
+#include<cmath>
 
 #include<string>
-#include<cmath>
 
 #define MAX (10)
 #define MIN (1)

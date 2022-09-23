@@ -1,4 +1,5 @@
-#include "TimeSheet.h";
+#include "TimeSheet.h"
+
 #include <cassert>
 #include <iostream>
 
