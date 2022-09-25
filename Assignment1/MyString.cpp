@@ -260,7 +260,8 @@ namespace assignment1
 
 		for (unsigned int i = 0; i < totalLength; i++) 
 		{
-			if (i < totalLength - this->length) {
+			if (i < totalLength - this->length) 
+			{
 				*resultPtr++ = c;
 			}
 			else 
