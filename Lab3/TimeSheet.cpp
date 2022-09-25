@@ -3,7 +3,7 @@
 namespace lab3
 {
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
-		:mName(name)
+		: mName(name)
 		, mMaxEntries(maxEntries)
 		, mIndex(0)
 	{
@@ -12,7 +12,7 @@ namespace lab3
 	}
 
 	TimeSheet::TimeSheet(const TimeSheet& oth)
-		:mName(oth.mName)
+		: mName(oth.mName)
 		, mMaxEntries(oth.mMaxEntries)
 		, mIndex(oth.mIndex)
 	{
@@ -20,13 +20,15 @@ namespace lab3
 		memcpy(mEntries, oth.mEntries, sizeof(int) * (mMaxEntries + 1));
 	}
 
-	TimeSheet::~TimeSheet() {
+	TimeSheet::~TimeSheet()
+	{
 		delete[] mEntries;
 	}
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& oth)
 	{
-		if (this == &oth) {
+		if (this == &oth)
+		{
 			return *this;
 		}
 
@@ -46,7 +48,8 @@ namespace lab3
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		if (mIndex >= mMaxEntries || timeInHours < MIN || timeInHours > MAX) {
+		if (mIndex >= mMaxEntries || timeInHours < MIN || timeInHours > MAX)
+		{
 			return;
 		}
 
@@ -63,7 +66,8 @@ namespace lab3
 		unsigned int total = 0;
 		int* mEntries_ptr = mEntries;
 
-		while (*mEntries_ptr != -1) {
+		while (*mEntries_ptr != -1)
+		{
 			total += *mEntries_ptr++;
 		}
 		return total;
@@ -78,10 +82,11 @@ namespace lab3
 	float TimeSheet::GetStandardDeviation() const
 	{
 		float val = 0.0f;
-		int* mEntries_ptr = mEntries;
-		while (*mEntries_ptr != -1) {
-			val += (float)std::pow(*mEntries_ptr - GetAverageTime(), 2);
-			mEntries_ptr++;
+		int* mEntriesPtr = mEntries;
+		while (*mEntriesPtr != -1)
+		{
+			val += static_cast<float> (std::pow(*mEntriesPtr - GetAverageTime(), 2));
+			mEntriesPtr++;
 		}
 		return (val == 0.0f) ? 0.0f : std::sqrt(val / mIndex);
 	}
