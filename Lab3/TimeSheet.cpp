@@ -64,11 +64,11 @@ namespace lab3
 	int TimeSheet::GetTotalTime() const
 	{
 		unsigned int total = 0;
-		int* mEntries_ptr = mEntries;
+		int* mEntriesPtr = mEntries;
 
-		while (*mEntries_ptr != -1)
+		while (*mEntriesPtr != -1)
 		{
-			total += *mEntries_ptr++;
+			total += *mEntriesPtr++;
 		}
 		return total;
 	}
@@ -76,7 +76,7 @@ namespace lab3
 	float TimeSheet::GetAverageTime() const
 	{
 		int totalTime = GetTotalTime();
-		return (totalTime == 0) ? 0 : totalTime / (float)mIndex;
+		return (totalTime == 0) ? 0 : totalTime / static_cast<float>(mIndex);
 	}
 
 	float TimeSheet::GetStandardDeviation() const
@@ -85,7 +85,7 @@ namespace lab3
 		int* mEntriesPtr = mEntries;
 		while (*mEntriesPtr != -1)
 		{
-			val += static_cast<float> (std::pow(*mEntriesPtr - GetAverageTime(), 2));
+			val += static_cast<float>(std::pow(*mEntriesPtr - GetAverageTime(), 2));
 			mEntriesPtr++;
 		}
 		return (val == 0.0f) ? 0.0f : std::sqrt(val / mIndex);
