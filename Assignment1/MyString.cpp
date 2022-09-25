@@ -13,7 +13,8 @@ namespace assignment1
 			return;
 		}
 		const char* S_PTR = s;
-		while (*S_PTR != '\0') {
+		while (*S_PTR != '\0') 
+		{
 			length++;
 			S_PTR++;
 		}
@@ -127,12 +128,12 @@ namespace assignment1
 		const char* STR_PTR = mStr;
 		while (*STR_PTR != '\0') 
 		{
-			const char* s_ptr = s;
+			const char* S_PTR = s;
 			int i = 0;
-			while (*(STR_PTR + i) == *(s_ptr + i)) 
+			while (*(STR_PTR + i) == *(S_PTR + i)) 
 			{
 				i++;
-				if (*(s_ptr + i) == '\0') 
+				if (*(S_PTR + i) == '\0') 
 				{
 					return STR_PTR - mStr;
 				}
@@ -159,12 +160,12 @@ namespace assignment1
 		int index = -1;
 		while (*STR_PTR != '\0') 
 		{
-			const char* s_ptr = s;
+			const char* S_PTR = s;
 			int i = 0;
-			while (*(STR_PTR + i) == *s_ptr) 
+			while (*(STR_PTR + i) == *S_PTR) 
 			{
-				s_ptr++;
-				if (*s_ptr == '\0') 
+				S_PTR++;
+				if (*S_PTR == '\0') 
 				{
 					index = STR_PTR - mStr;
 				}
@@ -226,7 +227,7 @@ namespace assignment1
 
 	bool MyString::RemoveAt(unsigned int i)
 	{
-		char* str_ptr = mStr;
+		char* strPtr = mStr;
 
 		if (i >= length) 
 		{
@@ -234,7 +235,7 @@ namespace assignment1
 		}
 		for (unsigned int j = 0; j < length - i; j++) 
 		{
-			*(str_ptr + i + j) = *(str_ptr + i + j + 1);
+			*(strPtr + i + j) = *(strPtr + i + j + 1);
 		}
 
 		length--;
@@ -257,11 +258,13 @@ namespace assignment1
 		char* resultPtr = result;
 		const char* strPtr = mStr;
 
-		for (unsigned int i = 0; i < totalLength; i++) {
+		for (unsigned int i = 0; i < totalLength; i++) 
+		{
 			if (i < totalLength - this->length) {
 				*resultPtr++ = c;
 			}
-			else {
+			else 
+			{
 				*resultPtr++ = *strPtr++;
 			}
 		}
@@ -324,16 +327,16 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
-		const char* s1_ptr = mStr;
-		const char* s2_ptr = rhs.mStr;
+		const char* S1_PTR = mStr;
+		const char* S2_PTR = rhs.mStr;
 
-		while (*s1_ptr == *s2_ptr && *s1_ptr != '\0') 
+		while (*S1_PTR == *S2_PTR && *S1_PTR != '\0') 
 		{
-			s1_ptr++;
-			s2_ptr++;
+			S1_PTR++;
+			S2_PTR++;
 		}
 
-		return (*s1_ptr == '\0' && *s2_ptr == '\0') ? true : false;
+		return (*S1_PTR == '\0' && *S2_PTR == '\0') ? true : false;
 	}
 
 	bool MyString::operator==(const char* rhs) const 
