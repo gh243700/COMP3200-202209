@@ -24,8 +24,8 @@ namespace lab4
 		const Point* mPoints[MAX];
 		unsigned int mCount;
 
-		inline void CopyPoints(const PolyLine& other);
-		inline void DeletePoints();
+		inline void copyPoints(const PolyLine& other);
+		inline void deletePoints();
 		
 	};
 }
