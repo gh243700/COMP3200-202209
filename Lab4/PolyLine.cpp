@@ -12,40 +12,31 @@ namespace lab4
 
 	PolyLine::PolyLine(const PolyLine& other)
 	{
+		memset(mPoints, 0, sizeof(Point*) * MAX);
 		operator=(other);
 	}
 
 	void PolyLine::operator=(const PolyLine& other)
 	{
-		if (this == &other) {
+		if (this == &other)
+		{
 			return;
 		}
 
 		mCount = other.mCount;
 
-		for (int i = 0; i < MAX; i++)
+		for (int i = 0; i < mCount; i++)
 		{
-			if (other.mPoints[i] != NULL)
-			{
-				mPoints[i] = new Point(*other.mPoints[i]);
-			}
-			else
-			{
-				mPoints[i] = NULL;
-			}
+			mPoints[i] = new Point(*other.mPoints[i]);
 		}
-
 	}
 
 	PolyLine::~PolyLine()
 	{
 		const Point** pp = mPoints;
-		for (int i = 0; i < MAX; i++)
+		for (int i = 0; i < mCount; i++)
 		{
-			if (*pp != NULL)
-			{
-				delete* pp;
-			}
+			delete* pp;
 			pp++;
 		}
 	}
@@ -57,50 +48,46 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		if (mCount >= MAX) {
-			goto addPointExit;
+		if (mCount >= MAX)
+		{
+			return false;
 		}
 
-		for (int i = 0; i < MAX; i++)
-		{
-			if (mPoints[i] == NULL)
-			{
-				mPoints[i] = point;
-				mCount++;
-				return true;
-			}
-		}
-	addPointExit:
-		return false;
+		mPoints[mCount++] = point;
+		return true;
 	}
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (i >= mCount || mPoints[i] != NULL)
-		{
-			delete mPoints[i];
-			mPoints[i] = NULL;
-			mCount--;
-			return true;
+		if (i >= mCount || i < 0) {
+			return false;
 		}
-		return false;
+
+		delete mPoints[i];
+		--mCount;
+		for (int index = i; i < mCount; i++) {
+			mPoints[i] = mPoints[i + 1];
+		}
+		mPoints[mCount] = NULL;
+
+		return true;
 	}
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
+		if (mCount <= 0)
+		{
+			return false;
+		}
 		const Point* p;
 		float minX = FLT_MAX;
 		float maxX = FLT_MIN;
 		float minY = FLT_MAX;
 		float maxY = FLT_MIN;
 
-		for (int i = 0; i < MAX - 1; i++)
+		for (int i = 0; i < mCount; i++)
 		{
-			const Point* p = mPoints[i + 1];
-			if (p == NULL)
-			{
-				continue;
-			}
+			p = mPoints[i];
 			float x = p->GetX();
 			float y = p->GetY();
 			minX = std::min(minX, x);
@@ -109,18 +96,15 @@ namespace lab4
 			maxY = std::max(maxY, y);
 		}
 
-		if (minX != maxX && minY != maxY)
-		{
-			*outMin = Point(minX, minY);
-			*outMax = Point(maxX, maxY);
-		}
+		*outMin = Point(minX, minY);
+		*outMax = Point(maxX, maxY);
 
-		return false;
+		return true;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		if (i >= mCount)
+		if (i < 0 || i >= mCount)
 		{
 			return NULL;
 		}
