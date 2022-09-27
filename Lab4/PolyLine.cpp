@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cmath>
+#include <limits>
 #include "PolyLine.h"
 
 namespace lab4
@@ -70,12 +71,11 @@ namespace lab4
 		}
 
 		delete mPoints[i];
-		--mCount;
-		for (int index = i; i < mCount; i++) 
+		for (int index = i; i < mCount - 1; i++) 
 		{
 			mPoints[i] = mPoints[i + 1];
 		}
-		mPoints[mCount] = NULL;
+		mPoints[--mCount] = NULL;
 
 		return true;
 	}
@@ -86,11 +86,11 @@ namespace lab4
 		{
 			return false;
 		}
-		const Point* p;
-		float minX = FLT_MAX;
-		float maxX = FLT_MIN;
-		float minY = FLT_MAX;
-		float maxY = FLT_MIN;
+		const Point* p = mPoints[0];
+		float minX = p->GetX();
+		float maxX = p->GetX();
+		float minY = p->GetY();
+		float maxY = p->GetY();
 
 		for (unsigned int i = 0; i < mCount; i++)
 		{
