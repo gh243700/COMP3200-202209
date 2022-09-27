@@ -12,9 +12,9 @@ namespace lab4
 	}
 
 	PolyLine::PolyLine(const PolyLine& other)
-		:mCount(other.mCount)
+		: mCount(other.mCount)
 	{
-		CopyPoints(other);
+		copyPoints(other);
 	}
 
 	void PolyLine::operator=(const PolyLine& other)
@@ -24,14 +24,14 @@ namespace lab4
 			return;
 		}
 		
-		DeletePoints();
+		deletePoints();
 		mCount = other.mCount;
-		CopyPoints(other);
+		copyPoints(other);
 	}
 
 	PolyLine::~PolyLine()
 	{
-		DeletePoints();
+		deletePoints();
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
@@ -110,7 +110,7 @@ namespace lab4
 		return mPoints[i];
 	}
 
-	void PolyLine::CopyPoints(const PolyLine& other)
+	void PolyLine::copyPoints(const PolyLine& other)
 	{
 		memset(mPoints, 0, sizeof(Point*) * MAX);
 		for (unsigned int i = 0; i < mCount; i++)
@@ -119,7 +119,7 @@ namespace lab4
 		}
 	}
 
-	void PolyLine::DeletePoints()
+	void PolyLine::deletePoints()
 	{
 		const Point** pp = mPoints;
 		for (unsigned int i = 0; i < mCount; i++)
