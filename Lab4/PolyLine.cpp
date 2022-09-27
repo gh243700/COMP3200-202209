@@ -11,8 +11,18 @@ namespace lab4
 	}
 
 	PolyLine::PolyLine(const PolyLine& other)
-		: mCount(other.mCount)
 	{
+		operator=(other);
+	}
+
+	void PolyLine::operator=(const PolyLine& other)
+	{
+		if (this == &other) {
+			return;
+		}
+
+		mCount = other.mCount;
+
 		for (int i = 0; i < MAX; i++)
 		{
 			if (other.mPoints[i] != NULL)
@@ -24,6 +34,7 @@ namespace lab4
 				mPoints[i] = NULL;
 			}
 		}
+
 	}
 
 	PolyLine::~PolyLine()
@@ -46,6 +57,10 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
+		if (mCount >= MAX) {
+			goto addPointExit;
+		}
+
 		for (int i = 0; i < MAX; i++)
 		{
 			if (mPoints[i] == NULL)
@@ -55,7 +70,7 @@ namespace lab4
 				return true;
 			}
 		}
-
+	addPointExit:
 		return false;
 	}
 
@@ -93,13 +108,13 @@ namespace lab4
 			minY = std::min(minY, y);
 			maxY = std::max(maxY, y);
 		}
-		
-		if (minX != maxX && minY != maxY) 
+
+		if (minX != maxX && minY != maxY)
 		{
 			*outMin = Point(minX, minY);
 			*outMax = Point(maxX, maxY);
 		}
-		
+
 		return false;
 	}
 
