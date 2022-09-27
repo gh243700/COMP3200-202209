@@ -385,6 +385,15 @@ int main()
 	PolyLineTryGetMinBoundingRectangleTest();
 	PolyLineOperateIndexTest();
 
+	Point* p1 = new Point(1, 2);
+	PolyLine line1;
+
+	assert(line1.RemovePoint(0) == false);
+	line1.AddPoint(p1);
+	assert(line1.RemovePoint(1) == false);
+	assert(line1.RemovePoint(0) == true);
+
+
 	std::cout << "END\n" << std::endl;
 	system("pause");
 }

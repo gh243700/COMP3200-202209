@@ -12,9 +12,9 @@ namespace lab4
 	}
 
 	PolyLine::PolyLine(const PolyLine& other)
+		:mCount(other.mCount)
 	{
-		memset(mPoints, 0, sizeof(Point*) * MAX);
-		operator=(other);
+		CopyPoints(other);
 	}
 
 	void PolyLine::operator=(const PolyLine& other)
@@ -23,23 +23,15 @@ namespace lab4
 		{
 			return;
 		}
-
+		
+		DeletePoints();
 		mCount = other.mCount;
-
-		for (unsigned int i = 0; i < mCount; i++)
-		{
-			mPoints[i] = new Point(*other.mPoints[i]);
-		}
+		CopyPoints(other);
 	}
 
 	PolyLine::~PolyLine()
 	{
-		const Point** pp = mPoints;
-		for (unsigned int i = 0; i < mCount; i++)
-		{
-			delete *pp;
-			pp++;
-		}
+		DeletePoints();
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
@@ -65,13 +57,13 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (i >= mCount || i < 0) 
+		if (i >= mCount || i < 0)
 		{
 			return false;
 		}
 
 		delete mPoints[i];
-		for (int index = i; i < mCount - 1; i++) 
+		for (int index = i; i < mCount - 1; i++)
 		{
 			mPoints[i] = mPoints[i + 1];
 		}
@@ -92,9 +84,9 @@ namespace lab4
 		float minY = p->GetY();
 		float maxY = p->GetY();
 
-		for (unsigned int i = 0; i < mCount; i++)
+		for (unsigned int i = 0; i < mCount - 1; i++)
 		{
-			p = mPoints[i];
+			p = mPoints[i + 1];
 			float x = p->GetX();
 			float y = p->GetY();
 			minX = std::min(minX, x);
@@ -116,5 +108,25 @@ namespace lab4
 			return NULL;
 		}
 		return mPoints[i];
+	}
+
+	void PolyLine::CopyPoints(const PolyLine& other)
+	{
+		memset(mPoints, 0, sizeof(Point*) * MAX);
+		for (unsigned int i = 0; i < mCount; i++)
+		{
+			mPoints[i] = new Point(*other.mPoints[i]);
+		}
+	}
+
+	void PolyLine::DeletePoints()
+	{
+		const Point** pp = mPoints;
+		for (unsigned int i = 0; i < mCount; i++)
+		{
+			delete *pp;
+			pp++;
+		}
+
 	}
 }

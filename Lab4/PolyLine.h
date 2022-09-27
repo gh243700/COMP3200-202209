@@ -18,10 +18,14 @@ namespace lab4
 
 
 		const Point* operator[](unsigned int i) const;
-	
+
 	private:
 		enum {MAX = 10};
 		const Point* mPoints[MAX];
 		unsigned int mCount;
+
+		inline void CopyPoints(const PolyLine& other);
+		inline void DeletePoints();
+		
 	};
 }
