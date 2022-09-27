@@ -36,13 +36,18 @@ namespace lab4
 		const Point** pp = mPoints;
 		for (int i = 0; i < mCount; i++)
 		{
-			delete* pp;
+			delete *pp;
 			pp++;
 		}
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
+		if (mCount >= MAX)
+		{
+			return false;
+		}
+
 		return AddPoint(new Point(x, y));
 	}
 
