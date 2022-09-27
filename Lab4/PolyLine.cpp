@@ -93,11 +93,14 @@ namespace lab4
 			minY = std::min(minY, y);
 			maxY = std::max(maxY, y);
 		}
-
-		*outMin = Point(minX, minY);
-		*outMax = Point(maxX, maxY);
-
-		return minX != maxX && minY != maxY;
+		
+		if (minX != maxX && minY != maxY) 
+		{
+			*outMin = Point(minX, minY);
+			*outMax = Point(maxX, maxY);
+		}
+		
+		return false;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
