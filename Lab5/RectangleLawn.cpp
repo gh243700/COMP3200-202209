@@ -31,8 +31,7 @@ namespace lab5
 
 	unsigned int RectangleLawn::GetMinimumFencesCount() const
 	{
-		return static_cast<unsigned int>(2 * (mWidth + mHeight)
-			/ 0.25f + 0.5f);
+		return static_cast<unsigned int>(2 * (mWidth + mHeight) / 0.25f + 0.5f);
 	}
 
 	unsigned int RectangleLawn::GetFencePrice(eFenceType fenceType) const
