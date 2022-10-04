@@ -15,7 +15,7 @@ namespace lab5
 	RectangleLawn::RectangleLawn(const RectangleLawn& other)
 		: RectangleLawn(other.mWidth, other.mHeight)
 	{
-		
+
 	}
 
 	void RectangleLawn::operator=(const RectangleLawn& other)
@@ -23,7 +23,7 @@ namespace lab5
 		mWidth = other.mWidth;
 		mHeight = other.mHeight;
 	}
-	
+
 	unsigned int RectangleLawn::GetArea() const
 	{
 		return mWidth * mHeight;
