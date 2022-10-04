@@ -327,9 +327,6 @@ void TEST1()
 		delete lawn2;
 		delete lawn3;
 		delete lawn4;
-
-	
-	
 	}
 
 }
