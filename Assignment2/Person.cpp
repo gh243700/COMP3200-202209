@@ -24,6 +24,16 @@ namespace assignment2
 	{
 	}
 
+	bool Person::operator==(const Person& other)
+	{
+		if (this == &other || mName == other.mName && mWeight == other.mWeight)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	const std::string& Person::GetName() const
 	{
 		return mName;

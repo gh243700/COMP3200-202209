@@ -1,11 +1,22 @@
 #pragma once
 
+#include "Airplane.h"
+#include "IFlyable.h"
+#include "ISailable.h"
+ 
+
 namespace assignment2
 {
-	class Boatplane
+	class Boatplane : public Airplane, public ISailable
 	{
 	public:
+
 		Boatplane(unsigned int maxPassengersCount);
 		~Boatplane();
+
+		unsigned int GetMaxSpeed() const;
+		unsigned int GetFlySpeed() const;
+		unsigned int GetSailSpeed() const;
+		bool IsMoveable() const;
 	};
 }

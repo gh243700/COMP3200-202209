@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Vehicle.h"
 namespace assignment2
 {
 	class Trailer
@@ -9,5 +10,8 @@ namespace assignment2
 		~Trailer();
 
 		unsigned int GetWeight() const;
+
+	private :
+		unsigned int mWeight;
 	};
 }

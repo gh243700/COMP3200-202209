@@ -8,9 +8,9 @@ namespace assignment2
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
-		Vehicle(const Vehicle& other);
-		void operator=(const Vehicle& other);
-		~Vehicle();
+		Vehicle(Vehicle& other);
+		virtual void operator=(Vehicle& other);
+		virtual ~Vehicle();
 
 		virtual unsigned int GetMaxSpeed() const = 0;
 
@@ -20,9 +20,16 @@ namespace assignment2
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
 
-	private:
+		unsigned int GetPassengersWeight() const;
+		virtual bool IsMoveable() const = 0;
+		void Move();
+		void ResetMove();
+		unsigned int GetTraveledDistance() const;
+	protected :
 		const Person** mPassengers;
 		unsigned int mMaxPassengersCount;
 		unsigned int mIndex;
+		unsigned int mTravelledDistance;
+		unsigned int mTurn;  
 	};
 }

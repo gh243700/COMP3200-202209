@@ -3,32 +3,39 @@
 namespace assignment2
 {
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
-		: mPassengers(new const Person* [maxPassengersCount + 1])
-		, mMaxPassengersCount(maxPassengersCount)
+		: mMaxPassengersCount(maxPassengersCount)
 		, mIndex(0)
+		, mTravelledDistance(0)
+		, mTurn(0)
 	{
+		mPassengers = new const Person * [maxPassengersCount + 1];
+
 		memset(mPassengers, 0, sizeof(Person*) * mMaxPassengersCount);
 		mPassengers[mMaxPassengersCount] = NULL;
 	}
 
-	Vehicle::Vehicle(const Vehicle& other)
-		: mPassengers(new const Person* [other.mMaxPassengersCount + 1])
-		, mMaxPassengersCount(other.mMaxPassengersCount)
+	Vehicle::Vehicle(Vehicle& other)
+		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mIndex(other.mIndex)
+		, mTravelledDistance(other.mTravelledDistance)
+		, mTurn(other.mTurn)
 	{
+		mPassengers = new const Person * [other.mMaxPassengersCount + 1];
 		const Person** ppm = mPassengers;
 		const Person** oppm = other.mPassengers;
 
 		while (*oppm != NULL)
 		{
-			*ppm = new Person(*oppm[0]);
+			*ppm = *oppm;
+			*oppm = NULL;
 			ppm++;
 			oppm++;
 		}
 		mPassengers[mMaxPassengersCount] = NULL;
+		other.mIndex = 0;
 	}
 
-	void Vehicle::operator=(const Vehicle& other)
+	void Vehicle::operator=(Vehicle& other)
 	{
 		const Person** ppm = mPassengers;
 		while (*ppm != NULL)
@@ -37,19 +44,23 @@ namespace assignment2
 			ppm++;
 		}
 		delete[] mPassengers;
-
+		mTravelledDistance = other.mTravelledDistance;
+		mTurn = other.mTurn;
 		mIndex = other.mIndex;
 		mMaxPassengersCount = other.mMaxPassengersCount;
-		mPassengers = new const Person* [mMaxPassengersCount];
+		mPassengers = new const Person* [mMaxPassengersCount + 1];
+		mPassengers[mMaxPassengersCount] = NULL;
 		ppm = mPassengers;
 
 		const Person** oppm = other.mPassengers;
 		while(*oppm != NULL)
 		{
-			*ppm = new Person(*oppm[0]);
+			*ppm = *oppm;
+			*oppm = NULL;
 			oppm++;
 			ppm++;
 		}
+		other.mIndex = 0;
 	}
 
 	Vehicle::~Vehicle()
@@ -57,7 +68,7 @@ namespace assignment2
 		const Person** mPassengersPtr = mPassengers;
 		while (*mPassengersPtr != NULL)
 		{
-			delete *mPassengers;
+			delete * mPassengersPtr;
 			mPassengersPtr++;
 		}
 		delete[] mPassengers;
@@ -81,8 +92,14 @@ namespace assignment2
 		{
 			return false;
 		}
-
+		
 		delete mPassengers[i];
+
+		for (int index = i; i < mIndex - 1; i++)
+		{
+			mPassengers[i] = mPassengers[i + 1];
+		}
+		mPassengers[--mIndex] = NULL;
 		return true;
 	}
 
@@ -96,6 +113,17 @@ namespace assignment2
 		return mMaxPassengersCount;
 	}
 
+	unsigned int Vehicle::GetPassengersWeight() const
+	{
+		unsigned int totalWeight = 0;
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			totalWeight += mPassengers[i]->GetWeight();
+		}
+
+		return totalWeight;
+	}
+
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
 		if (i < 0 || i >= mIndex)
@@ -104,5 +132,25 @@ namespace assignment2
 		}
 
 		return mPassengers[i];
+	}
+
+	void Vehicle::Move()
+	{
+		if (IsMoveable())
+		{
+			mTravelledDistance += GetMaxSpeed();
+		}
+		mTurn++;
+	}
+
+	void Vehicle::ResetMove()
+	{
+		mTurn = 0;
+		mTravelledDistance = 0;
+	}
+
+	unsigned int Vehicle::GetTraveledDistance() const
+	{
+		return mTravelledDistance;
 	}
 }
