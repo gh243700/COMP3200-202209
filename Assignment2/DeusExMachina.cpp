@@ -19,7 +19,7 @@ namespace assignment2
 
 	DeusExMachina::~DeusExMachina()
 	{
-		
+
 		for (int i = 0; i < mIndex; i++)
 		{
 			if (mVehicles[i] != NULL)
@@ -27,7 +27,6 @@ namespace assignment2
 				delete mVehicles[i];
 			}
 		}
-
 		S_DEUS_EX_MACHINA = NULL;
 	}
 
@@ -99,22 +98,5 @@ namespace assignment2
 		: mIndex(0)
 	{
 		memset(mVehicles, 0, sizeof(Vehicle*) * MAX);
-	}
-
-	DeusExMachina::DeusExMachina(const DeusExMachina& other)
-		: mIndex(other.mIndex)
-	{
-		memcpy(mVehicles, other.mVehicles, sizeof(Vehicle*) * MAX);
-	}
-
-	void DeusExMachina::operator=(const DeusExMachina& other)
-	{
-		if (this == &other)
-		{
-			return;
-		}
-
-		mIndex = other.mIndex;
-		memcpy(mVehicles, other.mVehicles, sizeof(Vehicle*) * MAX);
 	}
 }

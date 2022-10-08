@@ -589,6 +589,8 @@ void TestBoatClass()
 
 void TestAirplaneClass()
 {
+	Person* p = new Person("sss", 10);
+	delete p;
 
 	Person* p1 = new Person("name1", 100);
 	Person* p2 = new Person("name2", 110);
@@ -660,6 +662,7 @@ void TestAirplaneClass()
 
 int main()
 {
+
 	TestPersonClass();
 	TestAirplaneClass();
 	TestBoatClass();

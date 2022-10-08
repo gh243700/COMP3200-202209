@@ -9,7 +9,6 @@ namespace assignment2
 		, mTurn(0)
 	{
 		mPassengers = new const Person * [maxPassengersCount + 1];
-
 		memset(mPassengers, 0, sizeof(Person*) * (mMaxPassengersCount + 1));
 	}
 
@@ -30,7 +29,6 @@ namespace assignment2
 			ppm++;
 			oppm++;
 		}
-		mPassengers[mMaxPassengersCount] = NULL;
 	}
 
 	void Vehicle::operator=(Vehicle& other)
