@@ -2,6 +2,8 @@
 
 #include "Vehicle.h"
 #include "ISailable.h"
+#include "Airplane.h"
+#include "Boatplane.h"
 
 namespace assignment2
 {
@@ -11,6 +13,7 @@ namespace assignment2
 	class Boat : public Vehicle, public ISailable
 	{
 		friend class Airplane;
+		friend class BBoatplane;
 	public:
 		Boat(unsigned int maxPassengersCount);
 		~Boat();

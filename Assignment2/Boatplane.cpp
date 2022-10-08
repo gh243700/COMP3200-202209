@@ -4,7 +4,7 @@
 namespace assignment2
 {
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
-		: Boat(maxPassengersCount)
+		: Vehicle(maxPassengersCount)
 	{
 
 	}

@@ -27,10 +27,8 @@ namespace assignment2
 				delete mVehicles[i];
 			}
 		}
-		
 
 		S_DEUS_EX_MACHINA = NULL;
-
 	}
 
 	void DeusExMachina::Travel() const

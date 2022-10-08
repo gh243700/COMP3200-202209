@@ -16,8 +16,6 @@ namespace assignment2
 		Vehicle* GetVehicle(unsigned int i) const;
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
-
-
 	private :
 		static DeusExMachina* S_DEUS_EX_MACHINA;
 		DeusExMachina();
