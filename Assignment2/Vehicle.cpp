@@ -10,8 +10,7 @@ namespace assignment2
 	{
 		mPassengers = new const Person * [maxPassengersCount + 1];
 
-		memset(mPassengers, 0, sizeof(Person*) * mMaxPassengersCount);
-		mPassengers[mMaxPassengersCount] = NULL;
+		memset(mPassengers, 0, sizeof(Person*) * (mMaxPassengersCount + 1));
 	}
 
 	Vehicle::Vehicle(Vehicle& other)
@@ -20,19 +19,18 @@ namespace assignment2
 		, mTravelledDistance(other.mTravelledDistance)
 		, mTurn(other.mTurn)
 	{
-		mPassengers = new const Person * [other.mMaxPassengersCount + 1];
+		mPassengers = new const Person * [mMaxPassengersCount + 1];
+		memset(mPassengers, 0, sizeof(Person*) * (mMaxPassengersCount + 1));
 		const Person** ppm = mPassengers;
 		const Person** oppm = other.mPassengers;
 
 		while (*oppm != NULL)
 		{
-			*ppm = *oppm;
-			*oppm = NULL;
+			*ppm = new Person(**oppm);
 			ppm++;
 			oppm++;
 		}
 		mPassengers[mMaxPassengersCount] = NULL;
-		other.mIndex = 0;
 	}
 
 	void Vehicle::operator=(Vehicle& other)
@@ -49,7 +47,7 @@ namespace assignment2
 		mIndex = other.mIndex;
 		mMaxPassengersCount = other.mMaxPassengersCount;
 		mPassengers = new const Person* [mMaxPassengersCount + 1];
-		mPassengers[mMaxPassengersCount] = NULL;
+		memset(mPassengers, 0, sizeof(Person*) * (mMaxPassengersCount + 1));
 		ppm = mPassengers;
 
 		const Person** oppm = other.mPassengers;

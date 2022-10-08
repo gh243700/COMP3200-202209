@@ -4,6 +4,7 @@
 
 namespace assignment2
 {
+
 	class Person
 	{
 	public:
@@ -14,7 +15,6 @@ namespace assignment2
 		~Person();
 
 		bool operator==(const Person& other);
-
 		const std::string& GetName() const;
 		unsigned int GetWeight() const;
 	

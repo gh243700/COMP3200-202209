@@ -40,6 +40,7 @@ namespace assignment2
 
 		memcpy(bp.mPassengers + mIndex, boat.mPassengers, sizeof(Person*) * boat.mIndex);
 		memset(boat.mPassengers, 0, sizeof(Person*) * boat.mIndex);
+		//bp.mPassengers[mMaxPassengersCount] = NULL;
 		mIndex = 0;
 		boat.mIndex = 0;
 
