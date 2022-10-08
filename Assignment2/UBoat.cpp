@@ -21,7 +21,7 @@ namespace assignment2
 
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		int v = 550 - GetPassengersWeight() / 10.0 + 0.5;
+		double v = 550 - GetPassengersWeight() / 10.0 + 0.5;
 
 		if (v > 200)
 		{
@@ -33,7 +33,9 @@ namespace assignment2
 
 	unsigned int UBoat::GetDiveSpeed() const
 	{
-		return static_cast<unsigned int>(500 * log10((GetPassengersWeight() + 150) / 150.0) + 30.5);
+		double result = 500 * log10((GetPassengersWeight() + 150) / 150.0) + 30.5;
+
+		return static_cast<unsigned int>(result);
 	}
 
 	bool UBoat::IsMoveable() const
