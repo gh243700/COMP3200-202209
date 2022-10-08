@@ -51,7 +51,7 @@ void Test()
 	assert(air->AddPassenger(toAdd) == false); // 빌드봇은 이런 테스트 안함
 
 	delete air;
-
+	
 	*/
 	
 	Airplane dockingTest1(10);
@@ -606,6 +606,27 @@ void TestAirplaneClass()
 	a.AddPassenger(p4); // true;
 	a.AddPassenger(p5); // false;
 
+
+	Airplane copy(7);
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+	copy.AddPassenger(new Person("aaa", 10));
+
+	copy = a;
+
+	assert(*copy.GetPassenger(0) == *p1);
+	assert(*copy.GetPassenger(1) == *p2);
+	assert(*copy.GetPassenger(2) == *p3);
+	assert(*copy.GetPassenger(3) == *p4);
+	assert(copy.GetPassenger(4) == NULL);
+
+
+
 	assert(a.GetMaxSpeed() == 395);
 	assert(a.GetFlySpeed() == 395);
 	assert(a.GetDriveSpeed() == 2);
@@ -662,6 +683,7 @@ void TestAirplaneClass()
 
 int main()
 {
+
 
 	TestPersonClass();
 	TestAirplaneClass();

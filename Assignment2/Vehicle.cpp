@@ -33,10 +33,15 @@ namespace assignment2
 
 	void Vehicle::operator=(Vehicle& other)
 	{
+		if (&other == this)
+		{
+			return;
+		}
+
 		const Person** ppm = mPassengers;
 		while (*ppm != NULL)
 		{
-			delete* mPassengers;
+			delete *ppm;
 			ppm++;
 		}
 		delete[] mPassengers;
@@ -51,12 +56,10 @@ namespace assignment2
 		const Person** oppm = other.mPassengers;
 		while (*oppm != NULL)
 		{
-			*ppm = *oppm;
-			*oppm = NULL;
+			*ppm = new Person(**oppm);
 			oppm++;
 			ppm++;
 		}
-		other.mIndex = 0;
 	}
 
 	Vehicle::~Vehicle()
