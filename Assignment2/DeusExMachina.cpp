@@ -2,18 +2,18 @@
 
 namespace assignment2
 {
-	DeusExMachina* DeusExMachina::DEUS_EX_MACHINA = NULL;
+	DeusExMachina* DeusExMachina::S_DEUS_EX_MACHINA = NULL;
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		if (DEUS_EX_MACHINA != NULL)
+		if (S_DEUS_EX_MACHINA != NULL)
 		{
-			return DEUS_EX_MACHINA;
+			return S_DEUS_EX_MACHINA;
 		}
 
-		DEUS_EX_MACHINA = new DeusExMachina();
+		S_DEUS_EX_MACHINA = new DeusExMachina();
 
-		return DEUS_EX_MACHINA;
+		return S_DEUS_EX_MACHINA;
 	}
 
 
@@ -29,7 +29,7 @@ namespace assignment2
 		}
 		
 
-		DEUS_EX_MACHINA = NULL;
+		S_DEUS_EX_MACHINA = NULL;
 
 	}
 

@@ -53,7 +53,7 @@ namespace assignment2
 		ppm = mPassengers;
 
 		const Person** oppm = other.mPassengers;
-		while(*oppm != NULL)
+		while (*oppm != NULL)
 		{
 			*ppm = *oppm;
 			*oppm = NULL;

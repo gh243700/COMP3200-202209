@@ -19,10 +19,10 @@ namespace assignment2
 
 
 	private :
+		static DeusExMachina* S_DEUS_EX_MACHINA;
 		DeusExMachina();
 		DeusExMachina(const DeusExMachina& other);
 		void operator=(const DeusExMachina& other);
-		static DeusExMachina* DEUS_EX_MACHINA;
 		enum {MAX = 10};
 		Vehicle* mVehicles[MAX];
 		unsigned int mIndex;

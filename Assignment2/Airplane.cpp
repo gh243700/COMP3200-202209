@@ -22,12 +22,12 @@ namespace assignment2
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return static_cast<unsigned int>(200 * std::exp((-1* static_cast<int>(GetPassengersWeight()) + 800.0) / 500.0) + 0.5) ;
+		return static_cast<unsigned int>(200 * std::exp((-1 * static_cast<int>(GetPassengersWeight()) + 800.0) / 500.0) + 0.5);
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return static_cast<unsigned int>(4 * std::exp((-static_cast<int>(GetPassengersWeight()) + 400) / 70.0) + 0.5) ;
+		return static_cast<unsigned int>(4 * std::exp((-static_cast<int>(GetPassengersWeight()) + 400) / 70.0) + 0.5);
 	}
 
 
@@ -42,7 +42,7 @@ namespace assignment2
 		memset(boat.mPassengers, 0, sizeof(Person*) * boat.mIndex);
 		mIndex = 0;
 		boat.mIndex = 0;
-		
+
 		return bp;
 	}
 
