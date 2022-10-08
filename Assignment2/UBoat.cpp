@@ -21,8 +21,14 @@ namespace assignment2
 
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		int v = static_cast<int>(550 - GetPassengersWeight() / 10.0 + 0.5);		
-		return (v > 200) ? v : 200;
+		int v = 550 - GetPassengersWeight() / 10.0 + 0.5;
+
+		if (v > 200)
+		{
+			return static_cast<unsigned int>(v);
+		}
+
+		return 200;
 	}
 
 	unsigned int UBoat::GetDiveSpeed() const

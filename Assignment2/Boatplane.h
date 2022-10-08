@@ -7,7 +7,7 @@
 
 namespace assignment2
 {
-	class Boatplane : public Airplane, public ISailable
+	class Boatplane : public Boat, public IFlyable
 	{
 	public:
 
