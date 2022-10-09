@@ -10,6 +10,7 @@ namespace assignment2
 	Sedan::Sedan(Sedan& other)
 		: Sedan()
 	{
+		mTrailer = NULL;
 		Vehicle::operator=(other);
 		mTrailer = new Trailer(other.mTrailer->GetWeight());
 	}
@@ -26,6 +27,7 @@ namespace assignment2
 			delete mTrailer;
 		}
 		
+		mTrailer = NULL;
 		Vehicle::operator=(other);
 		
 		if (other.mTrailer != NULL)
