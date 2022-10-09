@@ -165,6 +165,25 @@ void TestDeusExMachinaClass()
 	UBoat* uBoat = new UBoat();
 	deusExMachina1->AddVehicle(uBoat);
 
+	Vehicle* v1 = new Airplane(1);
+	deusExMachina1->AddVehicle(v1);
+
+	Vehicle* v2 = new Airplane(1);
+	deusExMachina1->AddVehicle(v2);
+
+	Vehicle* v3 = new Airplane(1);
+	assert(deusExMachina1->AddVehicle(v3) == true);
+
+	Vehicle* v4 = new Airplane(1);
+	assert(deusExMachina1->AddVehicle(v4) == false);
+
+	assert(deusExMachina1->RemoveVehicle(10) == false);
+	assert(deusExMachina1->RemoveVehicle(9) == true);
+	assert(deusExMachina1->RemoveVehicle(9) == false);
+	assert(deusExMachina1->GetVehicle(8) == v2);
+	assert(deusExMachina1->GetVehicle(9) == NULL);
+
+
 
 	assert(airplane->IsMoveable() == true);
 	assert(boat->IsMoveable() == true);
@@ -241,7 +260,6 @@ void TestUboatClass()
 
 	assert(a.GetMaxSpeed() == 525);
 	assert(a.GetSailSpeed() == 525);
-	assert(a.GetDiveSpeed() == 245);
 
 	//y	y	n	n	n	n	y	y	n	n	n	n	y
 
