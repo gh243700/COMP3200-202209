@@ -45,8 +45,10 @@ namespace assignment2
 			return false;
 		}
 
-		vehicle->ResetMove();
-
+		for (unsigned int i = 0; i < mIndex; i++)
+		{
+			mVehicles[i]->ResetMove();
+		}
 
 		mVehicles[mIndex++] = vehicle;
 
