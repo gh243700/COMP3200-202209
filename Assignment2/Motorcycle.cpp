@@ -20,7 +20,7 @@ namespace assignment2
 	unsigned int Motorcycle::GetDriveSpeed() const
 	{
 		unsigned int weight = GetPassengersWeight();
-		int speed = -std::pow(weight / 15.0, 3) + 2 * weight + 400 + 0.5;
+		double speed = -std::pow(weight / 15.0, 3) + 2 * weight + 400 + 0.5;
 
 		if (speed > 0)
 		{

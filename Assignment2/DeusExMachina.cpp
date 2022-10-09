@@ -2,32 +2,31 @@
 
 namespace assignment2
 {
-	DeusExMachina* DeusExMachina::S_DEUS_EX_MACHINA = NULL;
+	DeusExMachina* DeusExMachina::mDeusExMachina = NULL;
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		if (S_DEUS_EX_MACHINA != NULL)
+		if (mDeusExMachina != NULL)
 		{
-			return S_DEUS_EX_MACHINA;
+			return mDeusExMachina;
 		}
 
-		S_DEUS_EX_MACHINA = new DeusExMachina();
+		mDeusExMachina = new DeusExMachina();
 
-		return S_DEUS_EX_MACHINA;
+		return mDeusExMachina;
 	}
 
 
 	DeusExMachina::~DeusExMachina()
 	{
-
-		for (int i = 0; i < mIndex; i++)
+		for (unsigned int i = 0; i < mIndex; i++)
 		{
 			if (mVehicles[i] != NULL)
 			{
 				delete mVehicles[i];
 			}
 		}
-		S_DEUS_EX_MACHINA = NULL;
+		mDeusExMachina = NULL;
 	}
 
 	void DeusExMachina::Travel() const
@@ -67,7 +66,7 @@ namespace assignment2
 
 		delete mVehicles[i];
 
-		for (int index = i; index < mIndex - 1; index++)
+		for (unsigned int index = i; index < mIndex - 1; index++)
 		{
 			mVehicles[index] = mVehicles[index + 1];
 		}

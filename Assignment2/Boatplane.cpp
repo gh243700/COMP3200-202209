@@ -28,7 +28,7 @@ namespace assignment2
 
 	unsigned int Boatplane::GetSailSpeed() const
 	{
-		int speed = 800 - 1.7 * GetPassengersWeight() + 0.5;
+		double speed = 800 - 1.7 * GetPassengersWeight() + 0.5;
 		if (speed > 20)
 		{
 			return static_cast<unsigned int>(speed);

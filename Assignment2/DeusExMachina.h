@@ -8,7 +8,10 @@ namespace assignment2
 	class DeusExMachina
 	{
 	public:
+		DeusExMachina(const DeusExMachina& other) = delete;
+		void operator=(const DeusExMachina& other) = delete;
 		~DeusExMachina();
+
 		static DeusExMachina* GetInstance();
 		void Travel() const;
 		bool AddVehicle(Vehicle* vehicle);
@@ -17,10 +20,8 @@ namespace assignment2
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
 	private :
-		static DeusExMachina* S_DEUS_EX_MACHINA;
+		static DeusExMachina* mDeusExMachina;
 		DeusExMachina();
-		DeusExMachina(const DeusExMachina& other) = delete;
-		void operator=(const DeusExMachina& other) = delete;
 		enum {MAX = 10};
 		Vehicle* mVehicles[MAX];
 		unsigned int mIndex;
