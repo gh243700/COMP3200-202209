@@ -44,12 +44,10 @@ namespace assignment2
 		{
 			return false;
 		}
-	
-		for (unsigned int i = 0; i < mIndex; i++)
-		{
-			mVehicles[i]->ResetMove();
-		}
-		
+
+		vehicle->ResetMove();
+
+
 		mVehicles[mIndex++] = vehicle;
 
 		return true;
