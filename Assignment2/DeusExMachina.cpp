@@ -45,10 +45,7 @@ namespace assignment2
 			return false;
 		}
 
-		for (unsigned int i = 0; i < mIndex; i++)
-		{
-			mVehicles[i]->ResetMove();
-		}
+		vehicle->ResetMove();
 
 		mVehicles[mIndex++] = vehicle;
 
@@ -90,7 +87,7 @@ namespace assignment2
 		for (unsigned int i = 0; i < mIndex - 1; i++)
 		{
 			Vehicle* v = mVehicles[i + 1];
-			if (result->GetTraveledDistance() < mVehicles[i]->GetTraveledDistance())
+			if (result->GetTraveledDistance() < v->GetTraveledDistance())
 			{
 				result = v;
 			}

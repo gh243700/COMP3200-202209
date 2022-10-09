@@ -51,9 +51,9 @@ void Test()
 	assert(air->AddPassenger(toAdd) == false); // 빌드봇은 이런 테스트 안함
 
 	delete air;
-	
+
 	*/
-	
+
 	Airplane dockingTest1(10);
 	Boat dockingTest2(10);
 
@@ -736,21 +736,19 @@ int main()
 	UBoat* t7 = new UBoat();
 
 	Vehicle* vArr[7] = { t1, t2, t3, t4, t5, t6, t7 };
+	Vehicle* result[13] = { t1, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2, t2 };
+	d->AddVehicle(t1);
+	d->AddVehicle(t2);
+	d->AddVehicle(t3);
+	d->AddVehicle(t4);
+	d->AddVehicle(t5);
+	d->AddVehicle(t6);
+	d->AddVehicle(t7);
 
-	for (size_t j = 0; j < 7; ++j)
+	for (size_t i = 0; i < 13; ++i)
 	{
-		d->AddVehicle(vArr[j]);
-		for (size_t i = 0; i < 13; ++i)
-		{
-			cout << j << "::" << i << endl;
-			d->Travel();
-			if (traveledDistanceArr[j][i] == d->GetVehicle(0)->GetTraveledDistance() == false)
-			{
-				cout << "d" << endl;
-			}
-			assert(traveledDistanceArr[j][i] == d->GetVehicle(0)->GetTraveledDistance());
-		}
-		d->RemoveVehicle(0);
+		d->Travel();
+		assert(d->GetFurthestTravelled() == result[i]);
 	}
 
 
