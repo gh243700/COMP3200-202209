@@ -44,11 +44,9 @@ namespace assignment2
 		{
 			return false;
 		}
-
 	
 		vehicle->ResetMove();
 
-		
 		mVehicles[mIndex++] = vehicle;
 
 		return true;
