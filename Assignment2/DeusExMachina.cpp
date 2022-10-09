@@ -45,9 +45,7 @@ namespace assignment2
 			return false;
 		}
 	
-		for (unsigned i = 0; i < mIndex; i++) {
-			mVehicles[i]->ResetMove();
-		}
+		vehicle->ResetMove();
 		
 		mVehicles[mIndex++] = vehicle;
 
