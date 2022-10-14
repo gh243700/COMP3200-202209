@@ -17,7 +17,7 @@ int main()
 	assert(abs(Average(v) - 3.230769231) <= numeric_limits<float>::epsilon());
 	vector<int> expected = { 12, 9, 7, 5, 5, 4, 3, 3, 2, 1, 0, -3, -6 };
 	SortDescending(v);
-
+	
 
 	for (vector<int>::iterator iter = v.begin(); iter != v.end(); iter++)
 	{
