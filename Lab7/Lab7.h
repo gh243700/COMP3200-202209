@@ -138,7 +138,7 @@ namespace lab7
 			os << *iter;
 			if (iter != v.end() - 1)
 			{
-				os << ",";
+				os << ", ";
 			}
 		}
 
