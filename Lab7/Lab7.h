@@ -11,22 +11,22 @@ namespace lab7
 	{
 		std::map<K, V> m;
 
-		typename std::vector<K>::const_iterator k_iter = keys.begin();
-		class std::vector<V>::const_iterator v_iter = values.begin();
+		typename std::vector<K>::const_iterator kIter = keys.begin();
+		class std::vector<V>::const_iterator vIter = values.begin();
 
-		while (k_iter != keys.end() && v_iter != values.end())
+		while (kIter != keys.end() && vIter != values.end())
 		{
-			K key = *k_iter;
-			V value = *v_iter;
+			K key = *kIter;
+			V value = *vIter;
 
 			if (m.find(key) != m.end())
 			{
-				++k_iter;
+				++kIter;
 				continue;
 			}
 			m.insert(std::pair<K, V>(key, value));
-			++k_iter;
-			++v_iter;
+			++kIter;
+			++vIter;
 		}
 
 		return m;
@@ -78,20 +78,30 @@ namespace lab7
 		std::vector<T> combined;
 		for (typename std::vector<T>::const_iterator iter = v1.begin(); iter != v1.end(); ++iter)
 		{
+			for (auto c_iter = combined.begin(); c_iter != combined.end(); ++c_iter)
+			{
+				if (*c_iter == *iter)
+				{
+					goto next1;
+				}
+			}
+
 			combined.push_back(*iter);
+		next1: 
+			;
 		}
 
 		for (typename std::vector<T>::const_iterator iter2 = v2.begin(); iter2 != v2.end(); ++iter2)
 		{
-			for (typename std::vector<T>::const_iterator iter1 = v1.begin(); iter1 != v1.end(); ++iter1)
+			for (typename std::vector<T>::const_iterator iter1 = combined.begin(); iter1 != combined.end(); ++iter1)
 			{
 				if (*iter1 == *iter2)
 				{
-					goto next;
+					goto next2;
 				}
 			}
 			combined.push_back(*iter2);
-		next:
+		next2:
 			;
 		}
 
