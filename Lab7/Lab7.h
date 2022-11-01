@@ -19,7 +19,7 @@ namespace lab7
 			K key = *k_iter;
 			V value = *v_iter;
 
-			if (m.contains(key))
+			if (m.find(key) != m.end())
 			{
 				++k_iter;
 				continue;
