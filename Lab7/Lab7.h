@@ -110,7 +110,7 @@ namespace lab7
 
 		for (typename std::map<K, V>::const_iterator iter = m2.begin(); iter != m2.end(); ++iter)
 		{
-			if (combined.contains(iter->first))
+			if (combined.find(iter->first) != combined.end())
 			{
 				continue;
 			}
