@@ -29,7 +29,7 @@ namespace assignment3
 	template <typename T>
 	inline Capture<T>::Capture()
 		: mValue(static_cast<T>(0))
-		, mMax(std::numeric_limits<T>::min())
+		, mMax(std::numeric_limits<T>::lowest())
 		, mMin(std::numeric_limits<T>::max())
 		, mSum(static_cast<T>(0))
 		, mSumOfPow(static_cast<T>(0))

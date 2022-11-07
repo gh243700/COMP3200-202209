@@ -69,17 +69,22 @@ namespace assignment3
 	template <typename T>
 	void QueueStack<T>::Enqueue(const T& number)
 	{
-		mSum += number;
+		if (mMaxStackSize == 0)
+		{
+			return;
+		}
+
 		if (mSmartStacks.size() == 0 || mSmartStacks.back().GetCount() >= mMaxStackSize)
 		{
 			SmartStack<T> smartStack;
 			smartStack.Push(number);
 			mSmartStacks.push(smartStack);
+			mSum += number;
 			return;
 		}
 
 		mSmartStacks.back().Push(number);
-
+		mSum += number;
 	}
 
 	template <typename T>
@@ -110,7 +115,7 @@ namespace assignment3
 	{
 		if (mSmartStacks.size() == 0 || mSmartStacks.back().GetCount() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		std::queue<SmartStack<T> > copy = mSmartStacks;
@@ -161,13 +166,20 @@ namespace assignment3
 	template <typename T>
 	double QueueStack<T>::GetAverage() const
 	{
-		assert(mSmartStacks.size() > 0 && mSmartStacks.front().GetCount() > 0);
+		if (mSmartStacks.size() == 0)
+		{
+			return 0;
+		}
 		return GetSum() / static_cast<double>(GetCount());
 	}
 
 	template <typename T>
 	T QueueStack<T>::GetSum() const
 	{
+		if (mSmartStacks.size() == 0)
+		{
+			return 0;
+		}
 		return mSum;
 	}
 

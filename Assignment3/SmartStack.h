@@ -10,7 +10,7 @@ namespace assignment3
 	class SmartStack
 	{
 	public:
-		SmartStack() = default;
+		SmartStack();
 		SmartStack(const SmartStack& other) = default;
 		SmartStack operator=(const SmartStack& other);
 		bool operator==(const SmartStack& other);
@@ -32,6 +32,12 @@ namespace assignment3
 	private:
 		std::stack<Capture<T> > mCapture;
 	};
+
+	template <typename T>
+	SmartStack<T>::SmartStack()
+	{
+
+	}
 
 	template <typename T>
 	SmartStack<T> SmartStack<T>::operator=(const SmartStack<T>& other)
@@ -98,7 +104,7 @@ namespace assignment3
 	{
 		if (mCapture.size() == 0)
 		{
-			return std::numeric_limits<T>::max();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		return mCapture.top().GetMax();
@@ -109,7 +115,7 @@ namespace assignment3
 	{
 		if (mCapture.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::max();
 		}
 
 		return mCapture.top().GetMin();
@@ -118,12 +124,22 @@ namespace assignment3
 	template <typename T>
 	inline double SmartStack<T>::GetAverage() const
 	{
+		if (mCapture.size() == 0)
+		{
+			return 0;
+		}
+
 		return mCapture.top().GetSum() / static_cast<double>(mCapture.size());
 	}
 
 	template <typename T>
 	inline T SmartStack<T>::GetSum() const
 	{
+		if (mCapture.size() == 0)
+		{
+			return 0;
+		}
+
 		return mCapture.top().GetSum();
 	}
 

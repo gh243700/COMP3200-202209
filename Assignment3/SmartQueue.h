@@ -28,6 +28,7 @@ namespace assignment3
 		double GetStandardDeviation() const;
 		unsigned int GetCount() const;
 
+
 	private:
 		std::queue<T> mValues;
 		T mSum;
@@ -103,7 +104,7 @@ namespace assignment3
 	{
 		if (mValues.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		std::queue<T> copy = mValues;
@@ -148,13 +149,20 @@ namespace assignment3
 	template <typename T>
 	double SmartQueue<T>::GetAverage() const
 	{
-		assert(mValues.size() > 0);
+		if (mValues.size() == 0)
+		{
+			return 0;
+		}
 		return mSum / static_cast<double>(mValues.size());
 	}
 
 	template <typename T>
 	T SmartQueue<T>::GetSum() const
 	{
+		if (mValues.size() == 0)
+		{
+			return 0;
+		}
 		return mSum;
 	}
 
