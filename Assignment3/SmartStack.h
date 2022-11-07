@@ -42,6 +42,7 @@ namespace assignment3
 		}
 
 		mCapture = other.mCapture;
+		return *this;
 	}
 
 	template <typename T>

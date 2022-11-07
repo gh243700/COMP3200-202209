@@ -11,6 +11,8 @@ namespace assignment3
 	public:
 		SmartQueue();
 		SmartQueue(const SmartQueue& rhs) = default;
+		SmartQueue operator=(const SmartQueue& rhs);
+
 		~SmartQueue() = default;
 		bool operator==(const SmartQueue& other);
 
@@ -39,6 +41,22 @@ namespace assignment3
 	{
 
 	}
+	
+	template <typename T>
+	SmartQueue<T> SmartQueue<T>::operator=(const SmartQueue<T>& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		mValues = other.mValues;
+		mSum = other.mSum;
+		mSumOfPow = other.mSumOfPow;
+
+		return *this;
+	}
+
 
 	template <typename T>
 	bool SmartQueue<T>::operator==(const SmartQueue<T>& other)

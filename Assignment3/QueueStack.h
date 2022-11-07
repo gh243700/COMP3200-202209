@@ -51,6 +51,7 @@ namespace assignment3
 		mSmartStacks = other.mSmartStacks;
 		mMaxStackSize = other.mMaxStackSize;
 		mSum = other.mSum;
+		return *this;
 	}
 
 	template <typename T>
