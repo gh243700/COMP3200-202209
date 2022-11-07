@@ -31,10 +31,14 @@ namespace assignment3
 
 	private:
 		std::stack<Capture<T> > mCapture;
+		T mSum;
+		double mSumOfPow;
 	};
 
 	template <typename T>
 	SmartStack<T>::SmartStack()
+		: mSum(static_cast<T>(0))
+		, mSumOfPow(0)
 	{
 
 	}
@@ -46,8 +50,9 @@ namespace assignment3
 		{
 			return *this;
 		}
-
+		mSum = other.mSum;
 		mCapture = other.mCapture;
+		mSumOfPow = other.mSumOfPow;
 		return *this;
 	}
 
@@ -59,7 +64,7 @@ namespace assignment3
 			return true;
 		}
 
-		return mCapture == other.mCapture;
+		return mCapture == other.mCapture && mSum == other.mSum && mSumOfPow == other.mSumOfPow;
 	}
 
 
@@ -76,6 +81,8 @@ namespace assignment3
 		{
 			capture = mCapture.top();
 		}
+		mSum += value;
+		mSumOfPow += std::pow(static_cast<double>(value), 2);
 		mCapture.push(Capture<T>(value, capture));
 	}
 
@@ -85,6 +92,8 @@ namespace assignment3
 		assert(mCapture.size() != 0);
 
 		T value = mCapture.top().GetValue();
+		mSum -= value;
+		mSumOfPow -= std::pow(static_cast<double>(value), 2);
 		mCapture.pop();
 		return value;
 	}
@@ -129,7 +138,7 @@ namespace assignment3
 			return 0;
 		}
 
-		return mCapture.top().GetSum() / static_cast<double>(mCapture.size());
+		return mSum / static_cast<double>(mCapture.size());
 	}
 
 	template <typename T>
@@ -140,22 +149,21 @@ namespace assignment3
 			return 0;
 		}
 
-		return mCapture.top().GetSum();
+		return mSum;
 	}
 
 	template <typename T>
 	inline double SmartStack<T>::GetVariance() const
 	{
 		Capture<T> capture = mCapture.top();
-		T sum = capture.GetSum();
-		double avg = sum / static_cast<double>(mCapture.size());
-		return (capture.GetSumOfPow() - 2 * avg * sum + mCapture.size() * std::pow(avg, 2)) / static_cast<double>(mCapture.size());
+		double avg = GetAverage();
+		return (mSumOfPow - 2 * avg * mSum + mCapture.size() * std::pow(avg, 2)) / static_cast<double>(mCapture.size());
 	}
 
 	template <typename T>
 	inline double SmartStack<T>::GetStandardDeviation() const
 	{
-		return std::sqrt(SmartStack<T>::GetVariance());
+		return std::sqrt(static_cast<double>(GetVariance()));
 	}
 
 	template <typename T>

@@ -15,15 +15,11 @@ namespace assignment3
 		T GetValue() const;
 		T GetMin() const;
 		T GetMax() const;
-		T GetSum() const;
-		T GetSumOfPow() const;
 
 	private:
 		T mValue;
 		T mMax;
 		T mMin;
-		T mSum;
-		T mSumOfPow;
 	};
 
 	template <typename T>
@@ -31,8 +27,6 @@ namespace assignment3
 		: mValue(static_cast<T>(0))
 		, mMax(std::numeric_limits<T>::lowest())
 		, mMin(std::numeric_limits<T>::max())
-		, mSum(static_cast<T>(0))
-		, mSumOfPow(static_cast<T>(0))
 	{
 
 	}
@@ -42,8 +36,6 @@ namespace assignment3
 		: mValue(value)
 		, mMax((c.mMax < value) ? value : c.mMax)
 		, mMin((c.mMin > value) ? value : c.mMin)
-		, mSum(c.mSum + value)
-		, mSumOfPow(c.mSumOfPow + static_cast<T>(std::pow(value, 2)))
 	{
 	}
 
@@ -57,8 +49,6 @@ namespace assignment3
 		mValue = other.mValue;
 		mMax = other.mMax;
 		mMin = other.mMin;
-		mSum = other.mSum;
-		mSumOfPow = other.mSumOfPow;
 
 		return *this;
 	}
@@ -71,7 +61,7 @@ namespace assignment3
 			return true;
 		}
 
-		return mValue == other.mValue && mMax == other.mMax && mMin == other.mMin && mSum == other.mSum && mSumOfPow == other.mSumOfPow;
+		return mValue == other.mValue && mMax == other.mMax && mMin == other.mMin;
 	}
 
 	template <typename T>
@@ -90,17 +80,5 @@ namespace assignment3
 	inline T Capture<T>::GetMax() const
 	{
 		return mMax;
-	}
-
-	template <typename T>
-	inline T Capture<T>::GetSum() const
-	{
-		return mSum;
-	}
-
-	template <typename T>
-	inline T Capture<T>::GetSumOfPow() const
-	{
-		return mSumOfPow;
 	}
 }

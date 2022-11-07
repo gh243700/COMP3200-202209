@@ -32,13 +32,13 @@ namespace assignment3
 	private:
 		std::queue<T> mValues;
 		T mSum;
-		T mSumOfPow;
+		double mSumOfPow;
 	};
 
 	template <typename T>
 	SmartQueue<T>::SmartQueue()
 		: mSum(static_cast<T>(0))
-		, mSumOfPow(static_cast<T>(0))
+		, mSumOfPow(0)
 	{
 
 	}
@@ -77,7 +77,7 @@ namespace assignment3
 	{
 		mValues.push(number);
 		mSum += number;
-		mSumOfPow += static_cast<T>(std::pow(number, 2));
+		mSumOfPow += std::pow(static_cast<double>(number), 2);
 	}
 
 	template <typename T>
@@ -93,7 +93,7 @@ namespace assignment3
 		assert(mValues.size() > 0);
 		T value = mValues.front();
 		mSum -= value;
-		mSumOfPow -= static_cast<T>(std::pow(value, 2));
+		mSumOfPow -= std::pow(static_cast<double>(value), 2);
 		mValues.pop();
 
 		return value;
