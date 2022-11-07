@@ -161,7 +161,7 @@ namespace assignment3
 	double QueueStack<T>::GetAverage() const
 	{
 		assert(mSmartStacks.size() > 0 && mSmartStacks.front().GetCount() > 0);
-		return GetSum() / GetCount();
+		return GetSum() / static_cast<double>(GetCount());
 	}
 
 	template <typename T>

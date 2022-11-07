@@ -69,7 +69,7 @@ namespace assignment3
 		{
 			capture = mCapture.top();
 		}
-		mCapture.push(Capture(value, capture));
+		mCapture.push(Capture<T>(value, capture));
 	}
 
 	template<typename T>
@@ -130,7 +130,7 @@ namespace assignment3
 	inline double SmartStack<T>::GetVariance() const
 	{
 		Capture<T> capture = mCapture.top();
-		double sum = capture.GetSum();
+		T sum = capture.GetSum();
 		double avg = sum / static_cast<double>(mCapture.size());
 		return (capture.GetSumOfPow() - 2 * avg * sum + mCapture.size() * std::pow(avg, 2)) / static_cast<double>(mCapture.size());
 	}
