@@ -10,6 +10,7 @@ namespace assignment3
 		Capture(const T& value, const Capture& c);
 		Capture operator=(const Capture& other);
 		bool operator==(const Capture& other);
+		~Capture() = default;
 
 		T GetValue() const;
 		T GetMin() const;
