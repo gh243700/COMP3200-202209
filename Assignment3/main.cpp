@@ -5,6 +5,8 @@
 #include "QueueStack.h"
 #include "SmartQueue.h"
 
+using namespace assignment3;
+
 int main()
 {
 	const double EPSILON = 0.0009765625;
