@@ -10,8 +10,7 @@ namespace lab8
 	{
 	public:
 		FixedVector();
-		FixedVector(const FixedVector& rhs) = delete;
-		FixedVector operator=(const FixedVector& rhs) = delete;
+		FixedVector(const FixedVector& rhs) = default;
 		~FixedVector() = default;
 		bool Add(const T& t);
 		bool Remove(const T& t);
