@@ -2,7 +2,7 @@
 #include <cassert>
 #include <iostream>
 #include <cstdint>
-
+#include "FixedBoolVector.h"
 using namespace lab8;
 
 void TEST1()
