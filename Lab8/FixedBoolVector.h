@@ -3,8 +3,6 @@
 #include <cmath>
 #include <cassert>
 #include <iostream>
-#include "FixedVector.h"
-
 
 namespace lab8
 {
