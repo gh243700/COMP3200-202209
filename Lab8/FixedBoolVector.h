@@ -64,7 +64,6 @@ namespace lab8
 			n = n << (index % BIT);
 			n |= back;
 
-
 			Print();
 			index /= BIT;
 			for (unsigned int i = index; i < mCount / BIT; ++i)
@@ -91,10 +90,11 @@ namespace lab8
 		int GetIndex(const bool t) const
 		{
 			unsigned int index = 0;
+			Print();
 			while (index < mCount)
 			{
-				int_t b = mVector[index / 2];
-				if ((b & 0x1 << index % BIT) == static_cast<int>(t))
+				int_t b = mVector[index / BIT];
+				if (static_cast<bool>(b & 0x1 << (index % BIT)) == t)
 				{
 					return index;
 				}

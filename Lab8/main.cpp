@@ -294,6 +294,8 @@ int main()
 			v1.Add(false);
 			v1.Add(false);
 
+			assert(v1.GetIndex(true) == 31);
+
 			assert(v1.Remove(true) == true);
 
 			bool expected1[49] =
