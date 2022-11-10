@@ -14,12 +14,11 @@ namespace lab8
 		~FixedVector() = default;
 		bool Add(const T& t);
 		bool Remove(const T& t);
-		T Get(unsigned int index) const;
+		const T& Get(unsigned int index) const;
 		T& operator[](unsigned int index);
 		int GetIndex(const T& t) const;
 		size_t GetSize() const;
 		size_t GetCapacity() const;
-
 
 	private:
 		T mVector[N];
@@ -70,7 +69,7 @@ namespace lab8
 	}
 
 	template<typename T, size_t N>
-	T FixedVector<T, N>::Get(unsigned int index) const
+	const T& FixedVector<T, N>::Get(unsigned int index) const
 	{
 		return mVector[index];
 	}
