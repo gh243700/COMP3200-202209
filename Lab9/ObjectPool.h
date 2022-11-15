@@ -1,6 +1,5 @@
 #pragma once
 #include <queue>
-#include <memory>
 
 namespace lab9
 {
@@ -11,7 +10,7 @@ namespace lab9
 		ObjectPool(size_t maxPoolSize);
 		ObjectPool(const ObjectPool& rhs) = delete;
 		ObjectPool operator=(const ObjectPool& rhs) = delete;
-		~ObjectPool() = default;
+		~ObjectPool();
 
 		T* Get();
 		void Return(T* ptr);
@@ -30,6 +29,16 @@ namespace lab9
 	}
 
 	template <typename T>
+	ObjectPool<T>::~ObjectPool()
+	{
+		while (mObjectPool.size() != 0)
+		{
+			delete mObjectPool.front();
+			mObjectPool.pop();
+		}
+	}
+
+	template <typename T>
 	T* ObjectPool<T>::Get()
 	{
 		if (mObjectPool.size() == 0)
@@ -37,7 +46,7 @@ namespace lab9
 			return new T;
 		}
 
-		T* ptr = mObjectPool.back();
+		T* ptr = mObjectPool.front();
 		mObjectPool.pop();
 
 		return ptr;
