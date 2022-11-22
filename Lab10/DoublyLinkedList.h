@@ -88,10 +88,10 @@ namespace lab10
 			return;
 		}
 
-		std::shared_ptr<Node<T>> newNode = std::make_shared<Node<T>>(std::move(data), node);
-		newNode->Next = node->Next;
-		node->Next = newNode;
-		node->Next->Previous = newNode;
+		std::shared_ptr<Node<T>> newNode = std::make_shared<Node<T>>(std::move(data), node->Previous.lock());
+		newNode->Next = node;
+		node->Previous.lock()->Next = newNode;
+		node->Previous = newNode;
 	}
 
 	template<typename T>
@@ -160,7 +160,7 @@ namespace lab10
 
 		std::shared_ptr<Node<T>> node = mHead;
 
-		for (int i = 0; i < index; ++i)
+		for (unsigned int i = 0; i < index; ++i)
 		{
 			node = node->Next;
 		}
@@ -196,11 +196,13 @@ namespace lab10
 				std::cout << arr[i - 1] << ", actural : " << (*(node->Data)) << std::endl;
 				return false;
 			}
-
+			std::cout << *(node->Data);
 			node = node->Next;
 
 
-			return true;
+
 		}
+		std::cout << std::endl;
+		return true;
 	}
 }
