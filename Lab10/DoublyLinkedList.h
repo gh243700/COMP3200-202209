@@ -18,7 +18,6 @@ namespace lab10
 		void Insert(std::unique_ptr<T> data, unsigned int index);
 		bool Delete(const T& data);
 		bool Search(const T& data) const;
-		bool ForTestPerpose(std::vector<T> arr);
 
 		std::shared_ptr<Node<T>> operator[](unsigned int index) const;
 		unsigned int GetLength() const;
@@ -172,49 +171,5 @@ namespace lab10
 	unsigned int DoublyLinkedList<T>::GetLength() const
 	{
 		return mCount;
-	}
-
-
-	template<typename T>
-	bool DoublyLinkedList<T>::ForTestPerpose(std::vector<T> arr)
-	{
-		if (arr.size() != GetLength())
-		{
-			std::cout << "count not equal , mCount : " << mCount << ", vector count : " << arr.size() << std::endl;
-			return false;
-		}
-
-		std::shared_ptr<Node<T>> node = mHead;
-		unsigned int i = 0;
-		while (node != nullptr)
-		{
-			if (*(node->Data) != arr[i++])
-			{
-				std::cout << "not correct value at index : ";
-				std::cout << i - 1;
-				std::cout << "\n expected : ";
-				std::cout << arr[i - 1] << ", actural : " << (*(node->Data)) << std::endl;
-				return false;
-			}
-			std::cout << *(node->Data);
-			node = node->Next;
-		}
-		std::cout << std::endl;
-		node = mHead;
-		while (node->Next != nullptr)
-		{
-			node = node->Next;
-		}
-
-		while (node != nullptr)
-		{
-			std::cout << *(node->Data);
-
-			node = node->Previous.lock();
-		}
-		
-		
-		std::cout << "ssssssssss" << std::endl;
-		return true;
 	}
 }
