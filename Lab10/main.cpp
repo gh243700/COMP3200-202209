@@ -8,7 +8,7 @@ using namespace lab10;
 
 int main()
 {
-	/*
+	
 	{
 		std::unique_ptr<int> number1 = std::make_unique<int>(1);
 		std::unique_ptr<int> number2 = std::make_unique<int>(2);
@@ -74,7 +74,7 @@ int main()
 		assert(*(list[9]->Previous.lock()->Data) == 9);
 
 	}
-	*/
+	
 	{
 		DoublyLinkedList<int> list;
 		std::vector<int> expected;
@@ -105,6 +105,20 @@ int main()
 		expected.insert(expected.begin() + 4, 0);
 		assert(list.ForTestPerpose(expected));
 
+
+		list.Delete(0);
+		expected.erase(expected.begin() + 0);
+		assert(list.ForTestPerpose(expected));
+
+
+		list.Delete(6);
+		expected.erase(expected.begin() + 2);
+		assert(list.ForTestPerpose(expected));
+
+
+		list.Delete(3);
+		expected.erase(expected.begin() + 3);
+		assert(list.ForTestPerpose(expected));
 	}
 
 

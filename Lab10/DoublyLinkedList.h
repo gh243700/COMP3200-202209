@@ -99,7 +99,7 @@ namespace lab10
 	{
 		std::shared_ptr<Node<T>> node = mHead;
 		bool exists = false;
-		while (node->Next != nullptr)
+		while (node != nullptr)
 		{
 			if (*(node->Data) == data)
 			{
@@ -198,11 +198,23 @@ namespace lab10
 			}
 			std::cout << *(node->Data);
 			node = node->Next;
-
-
-
 		}
 		std::cout << std::endl;
+		node = mHead;
+		while (node->Next != nullptr)
+		{
+			node = node->Next;
+		}
+
+		while (node != nullptr)
+		{
+			std::cout << *(node->Data);
+
+			node = node->Previous.lock();
+		}
+		
+		
+		std::cout << "ssssssssss" << std::endl;
 		return true;
 	}
 }
