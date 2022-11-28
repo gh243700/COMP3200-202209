@@ -5,6 +5,53 @@
 using namespace lab11;
 int main()
 {
+
+	{
+		
+		Storage<int> dummy(5, 5);
+		Storage<int> st(dummy);
+
+		assert(st.GetSize() == 5);
+
+		const std::unique_ptr<int[]>& copy = st.GetData();
+		assert(copy[0] == 5);
+		assert(copy[1] == 5);
+		assert(copy[2] == 5);
+		assert(copy[3] == 5);
+		assert(copy[4] == 5);
+
+	}
+	{
+		Storage<int> dummy(5, 5);
+		dummy = dummy;
+	
+		const std::unique_ptr<int[]>& copy = dummy.GetData();
+		assert(copy[0] == 5);
+		assert(copy[1] == 5);
+		assert(copy[2] == 5);
+		assert(copy[3] == 5);
+		assert(copy[4] == 5);
+	}
+
+	{
+		Storage<int> dummy(5, 5);
+		Storage<int> st(9);
+
+		st = dummy;
+
+		assert(st.GetSize() == 5);
+
+		const std::unique_ptr<int[]>& copy = st.GetData();
+		assert(copy[0] == 5);
+		assert(copy[1] == 5);
+		assert(copy[2] == 5);
+		assert(copy[3] == 5);
+		assert(copy[4] == 5);
+	
+	
+	
+	}
+
 	{
 		Storage<int> st(5);
 		

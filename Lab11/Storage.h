@@ -10,8 +10,12 @@ namespace lab11
 	public:
 		Storage(unsigned int length);
 		Storage(unsigned int length, const T& initialValue);
-		Storage(Storage&& ths);
-		Storage& operator=(Storage&& ths);
+
+		Storage(const Storage& rhs);
+		Storage& operator=(const Storage& rhs);
+
+		Storage(Storage&& rhs);
+		Storage& operator=(Storage&& rhs);
 
 
 		bool Update(unsigned int index, const T& data);
@@ -41,25 +45,58 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T>::Storage(Storage&& ths)
-		: mCapacity(ths.mCapacity)
+	Storage<T>::Storage(const Storage& rhs)
+		: mCapacity(rhs.mCapacity)
 	{
-		mArray = std::move(ths.mArray);
-		ths.mArray = nullptr;
-		ths.mCapacity = 0;
+		mArray = std::make_unique<T[]>(rhs.mCapacity);
+		for (size_t i = 0; i < mCapacity; ++i)
+		{
+			mArray[i] = rhs.mArray[i];
+		}
 	}
 
 	template<typename T>
-	Storage<T>& Storage<T>::operator=(Storage&& ths)
+	Storage<T>& Storage<T>::operator=(const Storage& rhs)
 	{
-		if (this == &ths)
+		if (this == &rhs)
 		{
 			return *this;
 		}
 
-		mArray = std::move(ths.mArray);
-		mCapacity = ths.mCapacity;
-		ths.mCapacity = 0;
+		mCapacity = rhs.mCapacity;
+		mArray = nullptr;
+		mArray = std::make_unique<T[]>(mCapacity);
+		
+		for (size_t i = 0; i < mCapacity; ++i)
+		{
+			mArray[i] = rhs.mArray[i];
+		}
+
+		return *this;
+	}
+
+	template<typename T>
+	Storage<T>::Storage(Storage&& rhs)
+		: mCapacity(rhs.mCapacity)
+	{
+		mArray = std::move(rhs.mArray);
+		rhs.mArray = nullptr;
+		rhs.mCapacity = 0;
+	}
+
+	template<typename T>
+	Storage<T>& Storage<T>::operator=(Storage&& rhs)
+	{
+		if (this == &rhs)
+		{
+			return *this;
+		}
+
+		mArray = std::move(rhs.mArray);
+		mCapacity = rhs.mCapacity;
+		rhs.mCapacity = 0;
+
+		return *this;
 	}
 
 	template<typename T>
