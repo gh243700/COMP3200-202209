@@ -8,7 +8,7 @@ using namespace lab10;
 
 int main()
 {
-	
+	std::cout << "ssssssss";
 
 
 
