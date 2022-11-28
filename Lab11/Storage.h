@@ -29,7 +29,7 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
-		: Storage(length, 0)
+		: Storage(length, static_cast<T>(0))
 	{
 	}
 
