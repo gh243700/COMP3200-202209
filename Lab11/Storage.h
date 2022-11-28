@@ -29,8 +29,13 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
-		: Storage(length, static_cast<T>(0))
+		: mCapacity(length)
 	{
+		mArray = std::make_unique<T[]>(mCapacity);
+		for (size_t i = 0; i < mCapacity; ++i)
+		{
+			memset(&mArray[0], 0, sizeof(T) * mCapacity);
+		}
 	}
 
 	template<typename T>
