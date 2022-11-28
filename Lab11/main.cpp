@@ -7,7 +7,7 @@ int main()
 {
 
 	{
-		
+
 		Storage<int> dummy(5, 5);
 		Storage<int> st(dummy);
 
@@ -24,7 +24,7 @@ int main()
 	{
 		Storage<int> dummy(5, 5);
 		dummy = dummy;
-	
+
 		const std::unique_ptr<int[]>& copy = dummy.GetData();
 		assert(copy[0] == 5);
 		assert(copy[1] == 5);
@@ -47,14 +47,14 @@ int main()
 		assert(copy[2] == 5);
 		assert(copy[3] == 5);
 		assert(copy[4] == 5);
-	
-	
-	
+
+
+
 	}
 
 	{
 		Storage<int> st(5);
-		
+
 		st = std::move(st);
 		assert(st.GetSize() == 5);
 		assert(st.GetData() != nullptr);
@@ -108,7 +108,7 @@ int main()
 
 		assert(s1.GetSize() == 9);
 		s1 = std::move(s2);
-		
+
 		assert(s1.GetSize() == 5);
 		assert(s2.GetSize() == 0);
 
