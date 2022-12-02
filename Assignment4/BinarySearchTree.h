@@ -66,7 +66,7 @@ namespace assignment4
 
 		if (node->Right == nullptr)
 		{
-			node->Right = std::make_shared<TreeNode<T>>(std::move(data));
+			node->Right = std::make_shared<TreeNode<T>>(node, std::move(data));
 			return;
 		}
 
@@ -110,12 +110,14 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		std::shared_ptr<TreeNode<T>>& node = *findNode(data, mRoot);
+		std::shared_ptr<TreeNode<T>>* temp = findNode(data, mRoot);
 
-		if (node == nullptr)
+		if (temp == nullptr)
 		{
 			return false;
 		}
+
+		std::shared_ptr<TreeNode<T>>& node = *temp;
 
 		if (deleteLeafRecursive(node, node->Left, eSearchType::OrderSuccessor))
 		{
