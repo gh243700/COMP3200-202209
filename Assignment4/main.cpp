@@ -274,5 +274,20 @@ int main()
 
 
 
+
+	{
+		BinarySearchTree<int> bt;
+		bt.Insert(std::make_unique<int>(8));
+		bt.Insert(std::make_unique<int>(8));
+		bt.Insert(std::make_unique<int>(8));
+		bt.Insert(std::make_unique<int>(7));
+		bt.Insert(std::make_unique<int>(7));
+
+		
+		std::shared_ptr<TreeNode<int>> test1 = bt.GetRootNode().lock();
+		assert(*(test1->Left->Data) == 8);
+
+	}
+
 	system("pause");
 }
