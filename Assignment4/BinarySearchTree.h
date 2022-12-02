@@ -53,7 +53,7 @@ namespace assignment4
 	template<typename T>
 	void BinarySearchTree<T>::insertHelperRecrusive(std::shared_ptr<TreeNode<T>> node, std::unique_ptr<T> data)
 	{
-		if (*(node->Data) > *data)
+		if (*(node->Data) >= *data)
 		{
 			if (node->Left == nullptr)
 			{
