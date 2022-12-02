@@ -196,7 +196,7 @@ int main()
 
 		bt.Delete(3);
 
-		node = nullptr;
+//		node = nullptr;
 		node = bt.GetRootNode().lock();
 		assert(*(node->Data) == 5);
 		assert(*(node->Left->Data) == 3);
@@ -263,7 +263,16 @@ int main()
 		assert(*(bt.GetRootNode().lock()->Left->Parent.lock()->Data) == 5);
 		assert(*(bt.GetRootNode().lock()->Left->Right->Right->Data) == 4);
 		assert(*(bt.GetRootNode().lock()->Left->Right->Right->Parent.lock()->Data) == 2);
+	}
 
+	{
+		BinarySearchTree<int> bt;
+		bt.Insert(std::make_unique<int>(5));
+		bt.Insert(std::make_unique<int>(8));
+		bt.Insert(std::make_unique<int>(8));
+
+
+	
 	
 	
 	}

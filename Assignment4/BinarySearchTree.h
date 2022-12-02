@@ -132,7 +132,23 @@ namespace assignment4
 			node->Right->Parent = leftMaxNode;
 			leftMaxNode->Right = node->Right;
 			node->Left->Parent = node->Parent;
-			node = node->Left;
+			std::shared_ptr<TreeNode<T>> elderNode = node->Parent.lock();
+			if (elderNode != nullptr)
+			{
+				if (elderNode->Left == node)
+				{
+					elderNode->Left = node->Left;
+				}
+				else
+				{
+					elderNode->Right = node->Left;
+				}
+			}
+			else 
+			{
+				node = node->Left;
+			}
+			
 			return true;
 		}
 
@@ -144,7 +160,23 @@ namespace assignment4
 		if (node->Right != nullptr)
 		{
 			node->Right->Parent = node->Parent;
-			node = node->Right;
+			std::shared_ptr<TreeNode<T>> elderNode = node->Parent.lock();
+			if (elderNode != nullptr)
+			{
+				if (elderNode->Left == node)
+				{
+					elderNode->Left = node->Right;
+				}
+				else
+				{
+					elderNode->Right = node->Right;
+				}
+			}
+			else 
+			{
+				node = node->Right;
+			}
+			
 			return true;
 		}
 
