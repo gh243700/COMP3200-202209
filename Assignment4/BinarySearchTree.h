@@ -47,8 +47,6 @@ namespace assignment4
 			return;
 		}
 
-
-
 		insertHelperRecrusive(mRoot, std::move(data));
 	}
 
@@ -59,7 +57,7 @@ namespace assignment4
 		{
 			if (node->Left == nullptr)
 			{
-				node->Left = std::make_shared<TreeNode<T>>(std::move(data));
+				node->Left = std::make_shared<TreeNode<T>>(node, std::move(data));
 				return;
 			}
 			insertHelperRecrusive(node->Left, std::move(data));

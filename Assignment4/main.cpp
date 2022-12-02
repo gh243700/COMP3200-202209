@@ -245,5 +245,28 @@ int main()
 	
 	}
 
+	{
+
+		BinarySearchTree<int> bt;
+
+		bt.Insert(std::make_unique<int>(5));
+		bt.Insert(std::make_unique<int>(3));
+		bt.Insert(std::make_unique<int>(8));
+		bt.Insert(std::make_unique<int>(1));
+		bt.Insert(std::make_unique<int>(4));
+		bt.Insert(std::make_unique<int>(2));
+		bt.Insert(std::make_unique<int>(1));
+		bt.Insert(std::make_unique<int>(3));
+
+		bt.Delete(3);
+		assert(*(bt.GetRootNode().lock()->Data) == 5);
+		assert(*(bt.GetRootNode().lock()->Left->Parent.lock()->Data) == 5);
+		assert(*(bt.GetRootNode().lock()->Left->Right->Right->Data) == 4);
+		assert(*(bt.GetRootNode().lock()->Left->Right->Right->Parent.lock()->Data) == 2);
+
+	
+	
+	}
+
 	system("pause");
 }
